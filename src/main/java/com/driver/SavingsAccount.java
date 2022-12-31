@@ -6,7 +6,9 @@ public class SavingsAccount extends BankAccount{
 
     public SavingsAccount(String name, double balance, double maxWithdrawalLimit, double rate) {
         // minimum balance is 0 by default
-
+        super(name, balance);
+        this.rate = rate;
+        this.maxWithdrawalLimit = maxWithdrawalLimit;
     }
     public void withdraw(double amount) throws Exception {
         // Might throw the following errors:
@@ -17,12 +19,13 @@ public class SavingsAccount extends BankAccount{
 
     public double getSimpleInterest(int years){
         // Return the final amount considering that bank gives simple interest on current amount
-
+        double money = getBalance();
+        return (money*rate*years/100 + money);
     }
 
     public double getCompoundInterest(int times, int years){
         // Return the final amount considering that bank gives compound interest on current amount given times per year
-
+        return getBalance()*Math.pow(1 + rate/times, times*years);
     }
 
 }

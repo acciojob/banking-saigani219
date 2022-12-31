@@ -10,6 +10,23 @@ public class BankAccount {
 
     }
 
+    public BankAccount(String name, double balance) {
+        this.name = name;
+        this.balance = balance;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double getMinBalance() {
+        return minBalance;
+    }
+
     public String generateAccountNumber(int digits, int sum) throws Exception{
         //Each digit of an account number can lie between 0 and 9 (both inclusive)
         //Generate account number having given number of 'digits' such that the sum of digits is equal to 'sum'
@@ -20,12 +37,15 @@ public class BankAccount {
 
     public void deposit(double amount) {
         //add amount to balance
-
+        balance += amount;
     }
 
     public void withdraw(double amount) throws Exception {
         // Remember to throw "Insufficient Balance" exception, if the remaining amount would be less than minimum balance
-
+        if((balance - amount) < minBalance){
+            throw new Exception("Insufficient Balance");
+        }
+        balance = balance - amount;
     }
 
 }
